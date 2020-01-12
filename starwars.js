@@ -1,6 +1,6 @@
 export default class StarWars {
     constructor() {
-        this.url = 'https://swapi.co/api/';
+        this.url = 'https://swapi.co/api/people/';
     }
 
     async getCharacters(maxCharacters) {
