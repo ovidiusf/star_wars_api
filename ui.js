@@ -1,6 +1,8 @@
 export default class UI {
   constructor() {
     this.profile = document.getElementById('characters');
+    this.loading = document.getElementById('loading');
+    this.loading.classList.toggle('show');
   };
 
   // create the profile of the user using bootstrap classes and dom manipulation
@@ -16,4 +18,10 @@ export default class UI {
         `;
     this.profile.appendChild(myDiv);
   };
+
+  clearLoading(){
+    if(this.profile.hasChildNodes()){
+      this.loading.classList.toggle('no-show');
+    }
+  }
 };

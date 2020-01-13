@@ -4,10 +4,14 @@ export default class StarWars {
     }
 
     async getCharacters(maxCharacters) {
-        const response = await fetch(`${this.url}${maxCharacters}`);
+        try{
+            const response = await fetch(`${this.url}${maxCharacters}`);
 
-        const json = await response.json();
-
-        return json;
+            const json = await response.json();
+    
+            return json;
+        }catch(error) {
+            console.log("error", error);
+        }
     }
 }
