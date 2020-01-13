@@ -4,8 +4,11 @@ import UI from './ui.js';
 const starwars = new StarWars;
 const ui = new UI;
 
-async function display(){
-    await console.log(starwars.getCharacters(2).then(data => ui.showProfile(data)));
+function display(){
+    let numberOfCharacters = 10;
+    for(let i=1; i < numberOfCharacters; i++){
+        starwars.getCharacters(i).then(data => ui.showProfile(data));
+    }
 }
 
 display();
