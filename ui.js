@@ -3,11 +3,12 @@ export default class UI {
     this.profile = document.getElementById('characters');
     this.planets = document.getElementById('planets');
     this.main = document.querySelector('#main');
-    this.displayLoading();
+    this.loading = this.displayLoading();
+    this.main.appendChild(this.loading);
   };
 
   // create the profile of the user using bootstrap classes and dom manipulation
-  showCharacter(character) {
+  showCharacters(character) {
     let newCharacterCard = this.createCard();
     newCharacterCard.innerHTML = `
         <div class="card-body">
@@ -20,22 +21,18 @@ export default class UI {
 
   showPlanets(planet) {
     let newPlanetCard = this.createCard();
-
     newPlanetCard.innerHTML = `
         <div class="card-body">
           <h5 class="card-title">${planet.name}</h5>
           <p class="card-text">${planet.name} with climate ${planet.temperate} and gravity ${planet.gravity}.</p>
         </div>
         `;
-
     this.planets.appendChild(newPlanetCard);
   };
 
   clearLoading() {
-    let loading = document.getElementById('loading');
-    const response = this.profile.hasChildNodes();
-    if (response) {
-      loading.classList.toggle('no-show');
+    if(!this.loading.classList.contains('no-show')){
+      this.loading.classList.toggle('no-show');
     }
   }
 
@@ -45,7 +42,7 @@ export default class UI {
     loading.classList.toggle('badge');
     loading.classList.toggle('badge-secondary');
     loading.innerHTML = 'Loading...';
-    this.main.appendChild(loading);
+    return loading;
   }
 
   createCard() {

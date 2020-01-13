@@ -4,13 +4,15 @@ export default class StarWars {
         this.urlPlanets = 'https://swapi.co/api/planets/';
     }
 
-    async getCharacters(characterNumber) {
+    async getCharacters() {
         try{
-            const response = await fetch(`${this.urlCharacters}${characterNumber}`);
+            const response = await fetch(`${this.urlCharacters}`);
 
             const json = await response.json();
     
-            return json;
+            const results = await json.results;
+    
+            return results;
         }catch(error) {
             console.log("error", error);
         }
