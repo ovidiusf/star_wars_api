@@ -7,15 +7,31 @@ const starwars = new StarWars;
 const ui = new UI;
 
 // display functions which gets the characters from the api and displays them using the ui function showProfile
-function display(){
+function displayCharacters() {
     let numberOfCharacters = 10;
-    for(let i=1; i < numberOfCharacters; i++){
-        starwars.getCharacters(i).then(data => ui.showProfile(data));
+    for (let i = 1; i < numberOfCharacters; i++) {
+        starwars.getCharacters(i).then(data => ui.showCharacter(data));
     };
-    ui.clearLoading();
 }
 
-display();
+// display the planets, going through the received array
+function displayPlanets() {
+    starwars.getPlanets().then(planets => {
+        planets.forEach(planet => {
+            ui.showPlanets(planet);
+        });
+    });
+}
+
+displayCharacters();
+displayPlanets();
+
+setTimeout(function(){
+    ui.clearLoading();
+}, 5000);
+
+
+
 
 
 
